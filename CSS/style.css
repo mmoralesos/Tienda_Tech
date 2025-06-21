@@ -1,0 +1,372 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* Header */
+header {
+  background: #0d1a2d;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.logo span {
+  color: #00ffff;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Hero */
+/* Animación de entrada */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sección principal del banner */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #1e2f3d;
+}
+
+.hero-img-container {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(65%); 
+}
+
+.hero-texto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  text-align: center;
+}
+
+.hero-texto h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.hero-texto p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.hero-texto .btn {
+  padding: 10px 25px;
+  background: #00bcd4;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.hero-texto .btn:hover {
+  background: #0097a7;
+}
+
+
+/* Productos */
+.productos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.producto {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.producto img{
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.producto button {
+  margin-top: 10px;
+  background: #00796b;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+/* Carrito */
+.carrito {
+  padding: 40px;
+  background: #fff;
+  border-top: 2px solid #00796b;
+}
+
+.oculto {
+  display: none;
+}
+
+/* Banner de redes sociales */
+.banner {
+  background-color: #0d1a2d;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.banner p {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.banner a img {
+  width: 35px;
+  height: 35px;
+  margin: 0 10px;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+
+.banner a img:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+
+/* Formulario de contacto */
+.formulario-contacto {
+  padding: 50px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.formulario-contacto button {
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.ubicacion {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.ubicacion h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #0d1a2d;
+}
+
+.mapa-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 4px solid #00bcd4;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mapa-container iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
+/* Estilo de validación */
+input:invalid, textarea:invalid {
+  border: 2px solid #e74c3c;
+}
+
+input.valid, textarea.valid {
+  border: 2px solid #2ecc71;
+}
+
+input.invalid, textarea.invalid {
+  border: 2px solid #e74c3c;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin: -10px 0 10px;
+  display: block;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.formulario-contacto label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #0d1a2d;
+}
+
+.terminos-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.terminos-container input[type="checkbox"] {
+  margin-left: 0; /* Alinea con los inputs del formulario */
+}
+
+.terminos-container label {
+  font-size: 0.95rem;
+  white-space: nowrap; /* Mantiene el texto en una sola línea */
+}
+
+.terminos-container a {
+  color: #00796b;
+  text-decoration: underline;
+}
+
+/* Estilos mejorados para el carrito */
+.carrito-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.item-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.item-info {
+  flex: 2;
+}
+
+.item-controles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-controles input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.item-controles button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.item-controles button:hover {
+  background-color: #c0392b;
+}
+
+/* Mensaje visual */
+#mensaje-agregado {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  transform: translateY(20px);
+}
+
+#mensaje-agregado.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilo del botón al pasar el mouse */
+.producto button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.producto button:hover {
+  transform: scale(1.1);
+  background-color: #0056b3;
+}

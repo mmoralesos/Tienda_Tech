@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resumen de Compra - TecnoShop</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .producto-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    .producto-info {
+      flex-grow: 1;
+    }
+    .producto-controles {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .producto-item input[type="number"] {
+      width: 50px;
+    }
+    .btn-quitar {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Tecno<span>Shop</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="contacto.html">Contáctanos</a></li>
+        <li><a href="carrito.html">🛒 Carrito (<span id="contador-carrito">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="formulario-contacto">
+    <div id="resumen-carrito"></div>
+    <p><strong>Total: S/ <span id="total">0.00</span></strong></p>
+
+    <h2>Completa tu información</h2>
+    <form onsubmit="procesarPago(event)">
+      <label>Nombre:</label>
+      <input type="text" required />
+      <label>Dirección:</label>
+      <input type="text" required />
+      <label>Método de pago:</label>
+      <select required>
+        <option value="">Seleccione</option>
+        <option value="visa">Visa</option>
+        <option value="yape">Yape</option>
+        <option value="plin">Plin</option>
+      </select>
+      <button type="submit">Pagar</button>
+    </form>
+  </main>
+
+    <script>
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const resumen = document.getElementById('resumen-carrito');
+    const totalSpan = document.getElementById('total');
+
+    function renderizarCarrito() {
+      resumen.innerHTML = '';
+      let total = 0;
+
+      carrito.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'producto-item';
+
+        const info = document.createElement('div');
+        info.className = 'producto-info';
+        info.textContent = `${item.nombre} - S/ ${item.precio}`;
+
+        const controles = document.createElement('div');
+        controles.className = 'producto-controles';
+
+        const inputCantidad = document.createElement('input');
+        inputCantidad.type = 'number';
+        inputCantidad.min = 1;
+        inputCantidad.value = item.cantidad || 1;
+        inputCantidad.onchange = () => {
+          carrito[index].cantidad = parseInt(inputCantidad.value);
+          guardarCarrito();
+          renderizarCarrito();
+        };
+
+        const btnQuitar = document.createElement('button');
+        btnQuitar.textContent = 'Quitar';
+        btnQuitar.className = 'btn-quitar';
+        btnQuitar.onclick = () => {
+          carrito.splice(index, 1);
+          guardarCarrito();
+          renderizarCarrito();
+        };
+
+        controles.appendChild(inputCantidad);
+        controles.appendChild(btnQuitar);
+
+        div.appendChild(info);
+        div.appendChild(controles);
+        resumen.appendChild(div);
+
+        total += item.precio * (item.cantidad || 1);
+      });
+
+      totalSpan.textContent = total.toFixed(2);
+    }
+
+    function guardarCarrito() {
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    function procesarPago(event) {
+      event.preventDefault();
+      alert("Compra realizada exitosamente. ¡Gracias por elegir TecnoShop!");
+      localStorage.removeItem('carrito');
+      window.location.href = "index.html";
+    }
+
+    renderizarCarrito();
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    actualizarContadorCarrito();
+    });
+    </script>
+    <script src="main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    actualizarContadorCarrito();
+    actualizarCarrito();       
+    renderizarCarrito();       
+    });
+    </script>
+</body>
+</html>

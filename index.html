@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TecnoShop - Electrónica de Alta Gama</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<script>
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+  function guardarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+
+  function agregarAlCarrito(nombre, precio) {
+    carrito.push({ nombre, precio });
+    guardarCarrito();
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    const detalle = document.getElementById('detalle-carrito');
+    const totalSpan = document.getElementById('total');
+    const contador = document.getElementById('contador-carrito');
+
+    if (detalle) {
+      detalle.innerHTML = '';
+      let total = 0;
+      carrito.forEach((item) => {
+        const div = document.createElement('div');
+        div.textContent = `${item.nombre} - S/ ${item.precio}`;
+        detalle.appendChild(div);
+        total += item.precio;
+      });
+      totalSpan.textContent = total.toFixed(2);
+    }
+
+    if (contador) contador.textContent = carrito.length;
+  }
+
+  function verCarrito() {
+    const carritoSeccion = document.getElementById('carrito');
+    carritoSeccion.classList.toggle('oculto');
+  }
+
+  actualizarCarrito();
+</script>
+
+<body>
+
+  <header>
+    <div class="logo">Tecno<span>Shop</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="contacto.html">Contáctanos</a></li>
+        <li><a href="carrito.html">🛒 Carrito (<span id="contador-carrito">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-img-container">
+      <img src="imagenes/portada.jpg" alt="Portada tienda tecnológica" class="hero-img" />
+      <div class="hero-texto">
+        <h1>Bienvenido a TecnoShop</h1>
+        <p>Los mejores equipos tecnológicos para tu día a día</p>
+        <a href="#productos" class="btn">Ver Productos</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="banner">
+    <p>Síguenos en redes:</p>
+    <a href="#"><img src="imagenes/facebook.png" alt="Facebook"></a>
+    <a href="#"><img src="imagenes/instagram.png" alt="Instagram"></a>
+    <a href="#"><img src="imagenes/youtube.png" alt="YouTube"></a>
+  </div>
+
+  <main id="productos" class="productos-container">
+    <div class="producto">
+      <img src="imagenes/laptop.jpg" alt="Laptop Gamer RTX" />
+      <h3>Laptop Gamer RTX</h3>
+      <p>S/ 4200</p>
+      <button onclick="agregarAlCarrito('Laptop Gamer RTX', 4200)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/smartphone.jpg" alt="Smartphone 5G" />
+      <h3>Smartphone 5G</h3>
+      <p>S/ 1800</p>
+      <button onclick="agregarAlCarrito('Smartphone 5G', 1800)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/tablet.jpg" alt="Tablet Pro 11" />
+      <h3>Tablet Pro 11"</h3>
+      <p>S/ 1300</p>
+      <button onclick="agregarAlCarrito('Tablet Pro 11', 1300)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/monitor.jpg" alt="Monitor Curvo 27" />
+      <h3>Monitor Curvo 27"</h3>
+      <p>S/ 900</p>
+      <button onclick="agregarAlCarrito('Monitor Curvo 27', 900)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/teclado.jpg" alt="Teclado Mecánico RGB" />
+      <h3>Teclado Mecánico RGB</h3>
+      <p>S/ 250</p>
+      <button onclick="agregarAlCarrito('Teclado Mecánico RGB', 250)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/mouse.jpg" alt="Mouse Óptico Gamer" />
+      <h3>Mouse Óptico Gamer</h3>
+      <p>S/ 150</p>
+      <button onclick="agregarAlCarrito('Mouse Óptico Gamer', 150)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/auriculares.jpg" alt="Auriculares Bluetooth" />
+      <h3>Auriculares Bluetooth</h3>
+      <p>S/ 300</p>
+      <button onclick="agregarAlCarrito('Auriculares Bluetooth', 300)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/smartwatch.jpg" alt="Smartwatch Deportivo" />
+      <h3>Smartwatch Deportivo</h3>
+      <p>S/ 550</p>
+      <button onclick="agregarAlCarrito('Smartwatch Deportivo', 550)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/camara.jpg" alt="Cámara Web FullHD" />
+      <h3>Cámara Web FullHD</h3>
+      <p>S/ 280</p>
+      <button onclick="agregarAlCarrito('Cámara Web FullHD', 280)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="imagenes/ssd.jpg" alt="Disco SSD 1TB" />
+      <h3>Disco SSD 1TB</h3>
+      <p>S/ 450</p>
+      <button onclick="agregarAlCarrito('Disco SSD 1TB', 450)">Agregar al carrito</button>
+    </div>
+    
+  </main> 
+
+  <section id="carrito" class="carrito oculto">
+    <h2>Carrito de Compras</h2>
+    <div id="detalle-carrito"></div>
+    <p><strong>Total: S/ <span id="total">0</span></strong></p>
+    <h3>Método de Pago</h3>
+    <select>
+      <option>Visa</option>
+      <option>Yape</option>
+      <option>Plin</option>
+    </select>
+  </section>
+
+  <section class="ubicacion">
+    <h2>Ubícanos</h2>
+    <h3>jr. Carabaya 485 - Lima</h3>
+    <div class="mapa-container">
+      <iframe
+        src="//www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2759.1030616004623!2d-77.03034082828903!3d-12.046206480890683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1750259138945!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        width="100%" height="300" style="border:0;" 
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    
+    </div>
+    
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    actualizarContadorCarrito();
+  });
+  </script>
+  <script src="main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    actualizarContadorCarrito();
+    actualizarCarrito();       
+    renderizarCarrito();       
+  });
+  </script>
+</body>
+</html>

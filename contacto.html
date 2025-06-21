@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contáctanos - TecnoShop</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">Tecno<span>Shop</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="contacto.html">Contáctanos</a></li>
+        <li><a href="carrito.html">🛒 Carrito (<span id="contador-carrito">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="formulario-contacto">
+  <h2>Contáctanos</h2>
+  <form id="contactoForm" novalidate>
+    
+    <label for="nombre">Nombre completo:</label>
+    <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required />
+    <span class="error-message" id="errorNombre"></span>
+
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" id="correo" placeholder="Ej. juan@mail.com" required />
+    <span class="error-message" id="errorCorreo"></span>
+
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+    <span class="error-message" id="errorMensaje"></span>
+
+    <div class="terminos-container">
+    <input type="checkbox" id="terminos" />
+    <label for="terminos">Acepto los <a href="#">términos y condiciones</a></label>
+    </div>
+
+    <button type="submit" id="btnEnviar" disabled>Enviar</button>
+  </form>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    actualizarContadorCarrito();
+  });
+</script>
+<script src="main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    actualizarContadorCarrito();
+    actualizarCarrito();       // Solo si es index.html
+    renderizarCarrito();       // Solo si es carrito.html
+  });
+</script>
+
+</body>
+</html>
+
